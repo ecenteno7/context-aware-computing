@@ -2,6 +2,33 @@ from nn_base.nn_base_data_loader import DataLoader
 
 
 class AudioDataLoader(DataLoader):
+	def load_dataset(self):
+        file_paths = []
+        labels = []
+        
+        # Assuming folder structure follows the UrbanSound8K format
+        for fold_num in range(1, 11):  # 10 predefined folds (fold1 to fold10)
+            fold_dir = os.path.join(self.config.ac_data_dir, f'fold{fold_num}')
+            for filename in os.listdir(fold_dir):
+                if filename.endswith(".wav"):
+                    # Extract class label from the filename (e.g., '1' from 'filename-1.wav')
+                    try:
+                        label = int(filename.split('-')[1])  # class IDs are 0-based
+                        if label < 0 or label >= num_classes:
+                            print(f"Warning: Invalid label {label} for file {filename}")
+                        file_paths.append(os.path.join(fold_dir, filename))
+                        labels.append(label)
+                    except ValueError:
+                        print(f"Error: Failed to extract label from filename {filename}")
+        
+        return file_paths, labels
+
+    def display_data_element(self, which_data, index):
+        pass
+
+    def preprocess_dataset(self):
+        pass
+
     # Function to pad or truncate the Mel spectrogram to a fixed length
     def pad_or_truncate(mel_spec, max_length):
         length = mel_spec.size(2)  # Get the time dimension length (width)
