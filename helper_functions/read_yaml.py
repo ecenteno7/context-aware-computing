@@ -17,7 +17,7 @@ class ReadYml:
         self.yml_file_name = yml_file_name
 
     def load_yml(self):
-        app_dir = FindDirectory('configs')
+        app_dir = FindDirectory('env')
         path = app_dir.create_directory()
         # load data analysis yml data
         with open(path + '/' + self.yml_file_name) as yml_file:

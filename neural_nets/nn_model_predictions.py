@@ -13,7 +13,6 @@ import sys
 PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
-from nn_base.nn_base_model_har import BaseModel
 
 # main path of the app
 main_app_path = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT))

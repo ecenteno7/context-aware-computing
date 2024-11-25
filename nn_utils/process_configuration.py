@@ -26,7 +26,7 @@ class ConfigurationParameters:
 		self.args = args
 
 		json_file = self.args['config']
-
+        
 		# Parse the configurations from the config json file provided.
 		with open(json_file, 'r') as config_file:
 			self.config_dictionary = json.load(config_file)

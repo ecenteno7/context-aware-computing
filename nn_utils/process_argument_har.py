@@ -31,7 +31,7 @@ def get_args():
 
 	# default NN JSONconfiguration path
 	path_obj = NnConfDirectory()
-	path_conf_default =  path_obj.nn_conf_directory() + nn_setup_conf['nn_conf_file']
+	path_conf_default =  path_obj.nn_conf_directory() + nn_setup_conf['config']
 	print('Config file path: {}'.format(path_conf_default))
 
 	parser = argparse.ArgumentParser( description = __doc__ )

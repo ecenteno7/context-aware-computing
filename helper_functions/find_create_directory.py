@@ -67,6 +67,6 @@ class NnConfDirectory:
     # directory for logging path
     @staticmethod
     def nn_conf_directory():
-        nn_conf_dir = 'nn_configuration_files'
+        nn_conf_dir = 'config'
         dir_path = os.path.join(path_main_app, nn_conf_dir) + '/'  # main app path + adding the 'logs' directory
         return dir_path

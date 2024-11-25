@@ -3,29 +3,31 @@ import torch
 import torchaudio
 import torch.nn as nn
 import torch.optim as optim
-import torch.nn.utils.prune as prune
+import torch.utils.data as data
 import torchaudio.transforms as T
 import numpy as np
 from sklearn.metrics import accuracy_score
 import soundata
 
 # Hyperparameters
-num_epochs = 1
-batch_size = 16  # Lowered batch size for quicker training and memory efficiency
-learning_rate = 0.001
-num_classes = 10  # Adjust based on your dataset
-max_length = 1500  # Max length for audio processing
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+NUM_EPOCHS = 5  # Just for testing, can increase for proper training
+BATCH_SIZE = 16  # For testing, smaller batch size works fine
+LEARNING_RATE = 0.001
+NUM_CLASSES = 10  # Adjust to your dataset
+MAX_LENGTH = 1500  # Max length for audio processing
+DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 DATASET = 'urbansound8k'
 
 # Function to pad or truncate the Mel spectrogram to a fixed length
 def pad_or_truncate(mel_spec, max_length):
-    length = mel_spec.size(2)
+    length = mel_spec.size(2)  # Get the time dimension length (width)
     if length < max_length:
+        # Pad with zeros if the length is shorter than max_length
         pad = max_length - length
         mel_spec = torch.nn.functional.pad(mel_spec, (0, pad))
     elif length > max_length:
+        # Truncate if the length is longer than max_length
         mel_spec = mel_spec[:, :, :max_length]
     return mel_spec
 
@@ -53,9 +55,7 @@ def load_audio_file(file_path, max_length=None):
     mel_spec = mel_spec.unsqueeze(0)  # Add a batch dimension
     return mel_spec
 
-import torch
-import torch.nn as nn
-
+# Define the audio classifier model
 class AudioClassifier(nn.Module):
     def __init__(self, num_classes=10):
         super(AudioClassifier, self).__init__()
@@ -95,23 +95,7 @@ class AudioClassifier(nn.Module):
         x = self.fc2(x)  # Output layer
         return x
 
-
-# Apply pruning to the model to reduce the number of parameters
-def prune_model(model):
-    prune.random_unstructured(model.conv1, name="weight", amount=0.3)  # Prune 30% of weights
-    prune.random_unstructured(model.conv2, name="weight", amount=0.3)
-    prune.random_unstructured(model.fc1, name="weight", amount=0.3)
-    prune.random_unstructured(model.fc2, name="weight", amount=0.3)
-    return model
-
-# Quantize the model for faster inference and smaller size
-def quantize_model(model):
-    model.qconfig = torch.quantization.get_default_qconfig('fbgemm')
-    torch.quantization.prepare(model, inplace=True)
-    # Calibration step - pass some data through the model
-    torch.quantization.convert(model, inplace=True)
-    return model
-
+# Load the dataset (for testing)
 def load_dataset(data_dir):
     file_paths = []
     labels = []
@@ -121,9 +105,6 @@ def load_dataset(data_dir):
         fold_dir = os.path.join(data_dir, f'fold{fold_num}')
         for filename in os.listdir(fold_dir):
             if filename.endswith(".wav"):
-                # Debugging: Print the filename and label extraction
-                print(f"Processing file: {filename}")
-                
                 # Extract class label from the filename (e.g., '1' from 'filename-1.wav')
                 try:
                     label = int(filename.split('-')[1])  # class IDs are 0-based
@@ -136,14 +117,14 @@ def load_dataset(data_dir):
     
     return file_paths, labels
 
-
-# Training and evaluation loop
-def train_and_evaluate(model, train_loader, test_loader, criterion, optimizer, max_length, device):
+# Function to train the model
+def train_model(model, train_loader, criterion, optimizer, device):
     model.train()
-    
+
     for epoch in range(num_epochs):
-        print(f"\nEpoch {epoch+1}/{num_epochs}")
+        print(f"Epoch {epoch+1}/{num_epochs}")
         
+        running_loss = 0.0
         for batch_idx, (inputs, targets) in enumerate(train_loader):
             optimizer.zero_grad()
             
@@ -165,21 +146,50 @@ def train_and_evaluate(model, train_loader, test_loader, criterion, optimizer, m
             loss.backward()
             optimizer.step()
 
+            running_loss += loss.item()
             if batch_idx % 10 == 0:
-                print(f"Batch {batch_idx+1}/{len(train_loader)}, Loss: {loss.item():.4f}")
+                print(f"Batch {batch_idx+1}/{len(train_loader)}, Loss: {running_loss/10:.4f}")
+                running_loss = 0.0
 
-    return model
+# Function to test the model
+def test_model(model, test_loader, device):
+    all_preds = []
+    all_labels = []
 
-# Cross-validation with predefined folds
-def cross_validate(data_dir, device):
-    print("Performing cross-validation...")
-    file_paths, labels = load_dataset(data_dir)
+    with torch.no_grad():
+        for inputs, labels in test_loader:
+            inputs_list = []
+            labels_list = []
+
+            for idx in range(len(inputs)):
+                mel_spec = load_audio_file(inputs[idx], max_length=max_length)  # Get mel spectrogram
+                mel_spec = mel_spec.squeeze(0)  # Remove any singleton dimensions
+                inputs_list.append(mel_spec)
+                labels_list.append(labels[idx])
+            
+            data_tensor = torch.stack(inputs_list, dim=0).to(device)
+            labels_tensor = torch.tensor(labels_list, dtype=torch.long).to(device)
+            
+            # Forward pass
+            outputs = model(data_tensor)
+            _, predicted = torch.max(outputs, 1)
+
+            all_preds.extend(predicted.cpu().numpy())
+            all_labels.extend(labels_tensor.cpu().numpy())
     
+    accuracy = accuracy_score(all_labels, all_preds)
+    return accuracy
+
+# Main function to train and test the model with cross-validation
+def cross_validate(data_dir, device):
+    file_paths, labels = load_dataset(data_dir)
+
     fold_accuracies = []
 
     for fold in range(1, 11):  # 10-fold cross-validation
         print(f"\nTraining fold {fold}")
         
+        # Split data into train and test for this fold
         test_files = [f for i, f in enumerate(file_paths) if (i % 10) == fold - 1]
         test_labels = [labels[i] for i in range(len(file_paths)) if (i % 10) == fold - 1]
         train_files = [f for i, f in enumerate(file_paths) if (i % 10) != fold - 1]
@@ -190,20 +200,28 @@ def cross_validate(data_dir, device):
         
         train_loader = torch.utils.data.DataLoader(train_data, batch_size=batch_size, shuffle=True)
         test_loader = torch.utils.data.DataLoader(test_data, batch_size=batch_size, shuffle=False)
-        
-        model = AudioClassifier().to(device)
+
+        # Initialize and train the model
+        model = AudioClassifier(num_classes=num_classes).to(device)
         criterion = nn.CrossEntropyLoss()
         optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-        model = train_and_evaluate(model, train_loader, test_loader, criterion, optimizer, max_length, device)
+        # Train the model
+        train_model(model, train_loader, criterion, optimizer, device)
         
-        model = prune_model(model)
-        
-        model_save_path = f"model_fold{fold}.pth"
+        # Test the model
+        accuracy = test_model(model, test_loader, device)
+        fold_accuracies.append(accuracy)
+        print(f"Test Accuracy for fold {fold}: {accuracy * 100:.2f}%")
+
+        # Save the model for this fold
+        model_save_path = f"best_model_fold{fold}.pth"
         torch.save(model.state_dict(), model_save_path)
         print(f"Model saved to {model_save_path}")
 
-    print("Cross-validation completed.")
+    # Print overall cross-validation accuracy
+    avg_accuracy = np.mean(fold_accuracies)
+    print(f"\nAverage Accuracy across all folds: {avg_accuracy * 100:.2f}%")
 
 if __name__ == "__main__":
     root_path = os.path.join('/Users', 'erik')

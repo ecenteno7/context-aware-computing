@@ -10,6 +10,99 @@ main_app_path = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT))
 
 class BaseModel():
     def __init__(self, config, dataset):
+        self.config = config
+        self.dataset = dataset
+    
+    def define_model(self):
+        """
+        Constructs the ConvNet model.
+        :param none
+        :return none
+        :raises NotImplementedError: Implement this method.
+        """
+
+        # Implement this method in the inherited class to add layers to the ConvNet.
+        raise NotImplementedError
+
+    def compile_model(self):
+        """
+        Configures the ConvNet model.
+        :param none
+        :return none
+        :raises NotImplementedError: Implement this method.
+        """
+
+        # Implement this method in the inherited class to configure the ConvNet model.
+        raise NotImplementedError
+
+    def fit_model(self):
+        """
+        Trains the ConvNet model.
+        :param none
+        :return none
+        :raises NotImplementedError: Implement this method.
+        """
+
+        # Implement this method in the inherited class to configure the ConvNet model.
+        raise NotImplementedError
+
+    def evaluate_model(self):
+        """
+        Evaluates the ConvNet model.
+        :param none
+        :return none
+        :raises NotImplementedError: Implement this method.
+        """
+
+        # Implement this method in the inherited class to evaluate the constructed ConvNet model.
+        raise NotImplementedError
+
+    def predict(self):
+        """
+        Predicts the class labels of unknown data.
+        :param none
+        :return none
+        :raises NotImplementedError: Exception: Implement this method.
+        """
+
+        # Implement this method in the inherited class to predict the class-labels of unknown data.
+        raise NotImplementedError
+
+    def save_model(self):
+        """
+        Saves the ConvNet model to disk in h5 format.
+        :param none
+        :return none
+        """
+
+        if self.model is None:
+            raise Exception("Model not configured and trained !")
+
+        self.model.save(self.saved_model_path)
+        print("Model saved at path: ", self.saved_model_path, "\n")
+
+        return
+
+    def load_model(self):
+        """
+        Loads the saved model from the disk.
+        :param none
+        :return none
+        :raises NotImplementedError: Implement this method.
+        """
+
+        if self.model is None:
+
+            raise Exception("Model not configured and trained !")
+
+        self.model.load_weights(self.saved_model_path)
+        print("Model loaded from the path: ", self.saved_model_path, "\n")
+
+        return
+
+
+class ConvNetModel(BaseModel):
+    def __init__(self, config, dataset):
 
         """
         Constructor to initialize the ConvNet's architecture parameters.
@@ -18,15 +111,9 @@ class BaseModel():
         :return none
         :raises none
         """
-
-        # Configuaration parameters.
-        self.config = config
-
-        # Training and testing datasets.
-        self.dataset = dataset
-
+        super().__init__(config, dataset)
         # ConvNet model.
-        self.cnn_model = keras.models.Sequential()
+        self.model = keras.models.Sequential()
 
         # History object, holds training history.
         self.history = keras.callbacks.History()
@@ -115,89 +202,3 @@ class BaseModel():
             print('Valid stride is specified!')
             return
 
-    def define_model(self):
-        """
-        Constructs the ConvNet model.
-        :param none
-        :return none
-        :raises NotImplementedError: Implement this method.
-        """
-
-        # Implement this method in the inherited class to add layers to the ConvNet.
-        raise NotImplementedError
-
-    def compile_model(self):
-        """
-        Configures the ConvNet model.
-        :param none
-        :return none
-        :raises NotImplementedError: Implement this method.
-        """
-
-        # Implement this method in the inherited class to configure the ConvNet model.
-        raise NotImplementedError
-
-    def fit_model(self):
-        """
-        Trains the ConvNet model.
-        :param none
-        :return none
-        :raises NotImplementedError: Implement this method.
-        """
-
-        # Implement this method in the inherited class to configure the ConvNet model.
-        raise NotImplementedError
-
-    def evaluate_model(self):
-        """
-        Evaluates the ConvNet model.
-        :param none
-        :return none
-        :raises NotImplementedError: Implement this method.
-        """
-
-        # Implement this method in the inherited class to evaluate the constructed ConvNet model.
-        raise NotImplementedError
-
-    def predict(self):
-        """
-        Predicts the class labels of unknown data.
-        :param none
-        :return none
-        :raises NotImplementedError: Exception: Implement this method.
-        """
-
-        # Implement this method in the inherited class to predict the class-labels of unknown data.
-        raise NotImplementedError
-
-    def save_model(self):
-        """
-        Saves the ConvNet model to disk in h5 format.
-        :param none
-        :return none
-        """
-
-        if self.cnn_model is None:
-            raise Exception("ConvNet model not configured and trained !")
-
-        self.cnn_model.save(self.saved_model_path)
-        print("ConvNet model saved at path: ", self.saved_model_path, "\n")
-
-        return
-
-    def load_cnn_model(self):
-        """
-        Loads the saved model from the disk.
-        :param none
-        :return none
-        :raises NotImplementedError: Implement this method.
-        """
-
-        if self.cnn_model is None:
-
-            raise Exception("ConvNet model not configured and trained !")
-
-        self.cnn_model.load_weights(self.saved_model_path)
-        print("ConvNet model loaded from the path: ", self.saved_model_path, "\n")
-
-        return
