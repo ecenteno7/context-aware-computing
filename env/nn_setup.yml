@@ -1,4 +1,4 @@
-har_config_file: har_config.json
+config: har_config.json
 audio_classifier_config: ac_config.json
-har_data_folder: har_dataset
+data_folder: har_dataset
 audio_data_folder: ac_dataset

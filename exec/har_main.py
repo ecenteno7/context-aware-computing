@@ -10,7 +10,7 @@ seed(1)
 # from tensorflow import set_random_seed
 # set_random_seed(2)
 import tensorflow as tf
-tf.random.set_seed(2)
+tf.random.set_random_seed(2)
 
 # import scripts from other folders
 import os
@@ -24,11 +24,11 @@ from helper_functions.read_yaml import ReadYml
 from helper_functions.libraries_checker import LibrariesChecker
 from nn_utils.process_configuration import ConfigurationParameters
 from nn_data_loader.har_loader import SensorDataLoader
-from nn_model.nn_model_har import HarModel
+from neural_nets.har_model import HarModel
 from nn_utils.model_utils_har import Report
 from nn_utils.process_argument_har import get_args
 from nn_utils.softmax_processing import SoftmaxResults
-from nn_model.nn_model_predictions import Predict
+from neural_nets.nn_model_predictions import Predict
 
 
 # read yml configuration for nn setup

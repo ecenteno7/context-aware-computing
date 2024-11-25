@@ -43,7 +43,7 @@ class SoftmaxResults:
             # add a column to the df with the class name (classification result)
             df['CLASS'] = self.config.config_namespace.class_names[index]
             # append the row to the final DataFrame
-            self.df = self.df._append(df)
+            self.df = pandas.concat([self.df, df], ignore_index=True)
         # create a new column with the max value of the DataFrame (efficient)
         print(self.df)
         print(df.loc[:, df.columns != 'CLASS'])
