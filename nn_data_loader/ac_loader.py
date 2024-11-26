@@ -1,13 +1,17 @@
 from nn_base.nn_base_data_loader import DataLoader 
 
 
-class AudioDataLoader(DataLoader):
-	def load_dataset(self):
+class FoldedAudioDataLoader(DataLoader):
+    def __init__(self, config):
+        super().__init__(config)
+
+
+    def load_dataset(self, folds=10):
         file_paths = []
         labels = []
         
         # Assuming folder structure follows the UrbanSound8K format
-        for fold_num in range(1, 11):  # 10 predefined folds (fold1 to fold10)
+        for fold_num in range(1, folds + 1):  # 10 predefined folds (fold1 to fold10)
             fold_dir = os.path.join(self.config.ac_data_dir, f'fold{fold_num}')
             for filename in os.listdir(fold_dir):
                 if filename.endswith(".wav"):
@@ -20,15 +24,19 @@ class AudioDataLoader(DataLoader):
                         labels.append(label)
                     except ValueError:
                         print(f"Error: Failed to extract label from filename {filename}")
-        
-        return file_paths, labels
+
+        self.data = file_paths
+        self.labels = labels
+
+        return
 
     def display_data_element(self, which_data, index):
-        pass
+        print(which_data[index])
 
     def preprocess_dataset(self):
-        pass
+        return
 
+    @staticmethod
     # Function to pad or truncate the Mel spectrogram to a fixed length
     def pad_or_truncate(mel_spec, max_length):
         length = mel_spec.size(2)  # Get the time dimension length (width)
@@ -41,6 +49,7 @@ class AudioDataLoader(DataLoader):
             mel_spec = mel_spec[:, :, :max_length]
         return mel_spec
 
+    @staticmethod
     # Function to load and preprocess audio files into Mel Spectrograms
     def load_audio_file(file_path, max_length=None):
         waveform, sample_rate = torchaudio.load(file_path)
