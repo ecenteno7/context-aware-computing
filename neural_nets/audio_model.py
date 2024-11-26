@@ -142,14 +142,16 @@ class AudioClassifier(BaseModel):
     # Main function to train and test the model with cross-validation
     def cross_validate(self):
         fold_accuracies = []
-        for fold in range(1, 11):  # 10-fold cross-validation
-            print(f"\nTraining fold {fold}")
-            
+        for fold_num in range(1, 11):  # 10-fold cross-validation
+            fold = f'fold{fold_num}/'
+
+            print(f"\nTraining {fold}")
+                        
             # Split data into train and test for this fold
-            test_files = [f for i, f in enumerate(self.dataset.data) if (i % 10) == fold - 1]
-            test_labels = [self.dataset.labels[i] for i in range(len(self.dataset.labels)) if (i % 10) == fold - 1]
-            train_files = [f for i, f in enumerate(self.dataset.data) if (i % 10) != fold - 1]
-            train_labels = [self.dataset.labels[i] for i in range(len(self.dataset.labels)) if (i % 10) != fold - 1]
+            train_files = [f for i, f in enumerate(self.dataset.data) if fold not in f]
+            test_files = [f for i, f in enumerate(self.dataset.data) if fold in f]
+            train_labels = [self.dataset.labels[i] for i, f in enumerate(self.dataset.data) if fold not in f]
+            test_labels = [self.dataset.labels[i] for i, f in enumerate(self.dataset.data) if fold in f]
 
             train_data = list(zip(train_files, train_labels))
             test_data = list(zip(test_files, test_labels))
@@ -165,7 +167,7 @@ class AudioClassifier(BaseModel):
             print(f"Test Accuracy for fold {fold}: {accuracy * 100:.2f}%")
 
             # Save the model for this fold
-            model_save_path = f"best_model_fold{fold}.pth"
+            model_save_path = f"model_fold{fold}.pth"
             torch.save(self.model.state_dict(), model_save_path)
             print(f"Model saved to {model_save_path}")
 

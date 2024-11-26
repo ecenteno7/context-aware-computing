@@ -7,8 +7,6 @@ from pprint import pprint
 # Reproduce results by seed-ing the random number generator.
 from numpy.random import seed
 seed(1)
-import tensorflow as tf
-tf.random.set_random_seed(2)
 
 # import scripts from other folders
 import os
@@ -26,8 +24,9 @@ from nn_utils.process_argument_har import get_args
 import soundata
 
 def main():
+    
     print('Time of NN train execution: {}'.format(datetime.now()))
-    print()
+    
     try:
 
         # Capture the command line arguments from the interface script.
@@ -54,23 +53,16 @@ def main():
         print('Please, give a valid value (save / load)')
         print('or give a valid value for test set evaluation (true / false)')
 
- 	# elif config.config_namespace.mode == 'load':
-	# 	# load the saved ConvNet model from the disk
-	# 	print('Loading the model..')
-	# 	model = Predict(config, dataset)
-	# 	model.load_model()
-	# 	if config.config_namespace.evaluate_test == 'true':
-	# 		model.evaluate_model()
-	# 		report = Report(config, model)
-	# 		report.model_classification_report()
-	# 		report.plot_confusion_matrix()
-    
-if __name__=="__main__":
+def setup():
     # read yml configuration for nn setup
     nn_setup_yml = ReadYml('nn_setup.yml')
     nn_setup_conf = nn_setup_yml.load_yml()
     print('YML conf:')
     pprint(nn_setup_conf)
+
+
+if __name__=="__main__":
+    setup()
     main()
 
 

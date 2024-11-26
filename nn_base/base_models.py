@@ -1,7 +1,5 @@
 import numpy as np
 import os
-import tensorflow as tf
-from tensorflow import keras
 
 # Main Application directory
 PACKAGE_PARENT = '..'
