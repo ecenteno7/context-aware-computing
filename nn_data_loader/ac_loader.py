@@ -1,6 +1,16 @@
+
+# import scripts from other folders
+import os
+import sys
+# sys.path.append('../')
+PACKAGE_PARENT = '..'
+SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
+
 from nn_base.nn_base_data_loader import DataLoader 
-
-
+import torchaudio
+import torch
+import torchaudio.transforms as T
 class FoldedAudioDataLoader(DataLoader):
     def __init__(self, config):
         super().__init__(config)
@@ -12,13 +22,14 @@ class FoldedAudioDataLoader(DataLoader):
         
         # Assuming folder structure follows the UrbanSound8K format
         for fold_num in range(1, folds + 1):  # 10 predefined folds (fold1 to fold10)
-            fold_dir = os.path.join(self.config.ac_data_dir, f'fold{fold_num}')
+            print(self.config.config_namespace)
+            fold_dir = os.path.join(self.config.config_namespace['dataset_dir'], f'fold{fold_num}')
             for filename in os.listdir(fold_dir):
                 if filename.endswith(".wav"):
                     # Extract class label from the filename (e.g., '1' from 'filename-1.wav')
                     try:
                         label = int(filename.split('-')[1])  # class IDs are 0-based
-                        if label < 0 or label >= num_classes:
+                        if label < 0 or label >= 10:
                             print(f"Warning: Invalid label {label} for file {filename}")
                         file_paths.append(os.path.join(fold_dir, filename))
                         labels.append(label)
@@ -36,9 +47,8 @@ class FoldedAudioDataLoader(DataLoader):
     def preprocess_dataset(self):
         return
 
-    @staticmethod
     # Function to pad or truncate the Mel spectrogram to a fixed length
-    def pad_or_truncate(mel_spec, max_length):
+    def pad_or_truncate(self, mel_spec, max_length):
         length = mel_spec.size(2)  # Get the time dimension length (width)
         if length < max_length:
             # Pad with zeros if the length is shorter than max_length
@@ -49,9 +59,8 @@ class FoldedAudioDataLoader(DataLoader):
             mel_spec = mel_spec[:, :, :max_length]
         return mel_spec
 
-    @staticmethod
     # Function to load and preprocess audio files into Mel Spectrograms
-    def load_audio_file(file_path, max_length=None):
+    def load_audio_file(self, file_path, max_length=None):
         waveform, sample_rate = torchaudio.load(file_path)
 
         if waveform.size(0) > 1:
@@ -69,7 +78,7 @@ class FoldedAudioDataLoader(DataLoader):
         mel_spec = (mel_spec - mel_spec.mean()) / mel_spec.std()  # Normalize
 
         if max_length is not None:
-            mel_spec = pad_or_truncate(mel_spec, max_length)
+            mel_spec = self.pad_or_truncate(mel_spec, max_length)
 
         mel_spec = mel_spec.unsqueeze(0)  # Add a batch dimension
         return mel_spec

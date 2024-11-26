@@ -40,5 +40,6 @@
 	"validation_split_ratio": 0.1,
 	"batch_normalization": true,
 	"class_names": ["WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING" , "STANDING", "LAYING"],
-	"libraries_checker": true
+	"libraries_checker": true,
+  "dataset_dir": "ac"
 }
