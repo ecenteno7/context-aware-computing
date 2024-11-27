@@ -33,7 +33,6 @@ def get_args(args):
     path_obj = NnConfDirectory()
     config_key = f'{args}_config'
     path_conf_default =  path_obj.nn_conf_directory() + nn_setup_conf.get(config_key)
-    print('Config file path: {}'.format(path_conf_default))
 
     parser = argparse.ArgumentParser( description = __doc__ )
 
@@ -85,20 +84,5 @@ def get_args(args):
     	print()
     else:
     	print('Using configurations from file:', args['config'])
-
-    if args['epoch'] == 1:
-    	print('Using default epoch size of 1.')
-    else:
-    	print('Using epoch size:', args['epoch'])
-
-    if args['mode'] == 'save':
-    	print('Using default mode --> save.')
-    else:
-    	print('Using mode:', args['mode'])
-
-    if args['testevaluation'] == 'false':
-    	print('Using default value for test set evaluation --> false.')
-    else:
-    	print('Using test set evaluation:', args['testevaluation'])
 
     return args

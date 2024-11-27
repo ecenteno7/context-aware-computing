@@ -22,7 +22,6 @@ class FoldedAudioDataLoader(DataLoader):
         
         # Assuming folder structure follows the UrbanSound8K format
         for fold_num in range(1, folds + 1):  # 10 predefined folds (fold1 to fold10)
-            print(self.config.config_namespace)
             fold_dir = os.path.join(self.config.config_namespace['dataset_dir'], f'fold{fold_num}')
             for filename in os.listdir(fold_dir):
                 if filename.endswith(".wav"):

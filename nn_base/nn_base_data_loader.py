@@ -17,11 +17,10 @@ class DataLoader:
 		# Training Dataset's Data and Labels.
 		self.train_data = np.array([])
 		self.train_labels = np.array([])
-
+        
 		# Testing Dataset's Data and Lables.
 		self.test_data = np.array([])
 		self.test_labels = np.array([])
-
 		# Total number of Class-Labels.
 		self.no_of_classes = 0
 
