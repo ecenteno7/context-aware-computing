@@ -23,6 +23,7 @@ from numpy.random import seed
 seed(1)
 
 def main():
+    model = None
     print('Time of NN train execution: {}'.format(datetime.now()))
     try:
         args = get_args("audio")
@@ -33,13 +34,17 @@ def main():
 
     # Load the dataset from the library, process and print its details.
     dataset = FoldedAudioDataLoader(config)
-    
+    print(config.config_namespace.mode) 
     if config.config_namespace.mode == 'save':
         model = AudioClassifier(config, dataset)
         model.save_model()
+    elif config.config_namespace.mode == 'load':
+        print("Loading model from file...")
+        model = AudioClassifier(config, dataset, load=True)
     else:
         print('Please, give a valid value (save / load)')
         print('or give a valid value for test set evaluation (true / false)')
+    return model 
 
 def setup():
     nn_setup_yml = ReadYml('nn_setup.yml')
@@ -50,5 +55,7 @@ def setup():
 
 if __name__=="__main__":
     setup()
-    main()
+    model = main()
+    model.predict(os.path.join('/home', 'erik', 'Downloads', 'Saturday at 4-30 PM.wav'))
+
 

@@ -62,16 +62,21 @@ class MelSpectrogramCNN(nn.Module):
 
 
 class AudioClassifier(BaseModel):
-    def __init__(self, config, dataset):
+    def __init__(self, config, dataset, load=False):
         super().__init__(config, dataset)
-        self.define_model()
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.device = "cpu"
+        self.define_model()
+        if load:
+            print("Loading")
+            self.model.load_state_dict(torch.load(self.saved_model_path, weights_only=True))
+            return     
         self.compile_model()
         self.cross_validate() 
     
     def define_model(self, kernel_size=2, stride=2):
         self.model = MelSpectrogramCNN()
+        self.saved_model_path = os.path.join(self.config.config_namespace.saved_model_dir, 'audio_classifier.pth')
+        self.model.to(self.device)
         return 
 
     def compile_model(self):
@@ -121,7 +126,7 @@ class AudioClassifier(BaseModel):
                 labels_list = []
 
                 for idx in range(len(inputs)):
-                    mel_spec = self.dataset.load_audio_file(inputs[idx], max_length=max_length)  # Get mel spectrogram
+                    mel_spec = self.dataset.load_audio_file(inputs[idx], max_length=1500)  # Get mel spectrogram
                     mel_spec = mel_spec.squeeze(0)  # Remove any singleton dimensions
                     inputs_list.append(mel_spec)
                     labels_list.append(labels[idx])
@@ -152,7 +157,8 @@ class AudioClassifier(BaseModel):
             test_files = [f for i, f in enumerate(self.dataset.data) if fold in f]
             train_labels = [self.dataset.labels[i] for i, f in enumerate(self.dataset.data) if fold not in f]
             test_labels = [self.dataset.labels[i] for i, f in enumerate(self.dataset.data) if fold in f]
-
+            print(len(train_files))
+            print(len(test_files))
             train_data = list(zip(train_files, train_labels))
             test_data = list(zip(test_files, test_labels))
             self.dataset.train_data = torch.utils.data.DataLoader(train_data, batch_size=10, shuffle=True)
@@ -167,14 +173,20 @@ class AudioClassifier(BaseModel):
             print(f"Test Accuracy for fold {fold}: {accuracy * 100:.2f}%")
 
             # Save the model for this fold
-            model_save_path = f"model_fold{fold}.pth"
+            model_save_path = f"model_fold{fold_num}.pth"
             torch.save(self.model.state_dict(), model_save_path)
             print(f"Model saved to {model_save_path}")
 
         # Print overall cross-validation accuracy
         avg_accuracy = np.mean(fold_accuracies)
         return
-        
-    def predict(self):
-        pass
 
+    def predict(self, input_file_path):
+        self.model.eval()
+        
+        input = self.dataset.load_audio_file(input_file_path, max_length=1500)
+        outputs = self.model(input.to(self.device))
+        _, predicted = torch.max(outputs, 1)
+
+        print(self.config.config_namespace.class_names[predicted[0]])
+        return

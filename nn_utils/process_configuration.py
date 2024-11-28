@@ -33,9 +33,6 @@ class ConfigurationParameters:
         # Convert the dictionary to a namespace using bunch library.
         self.config_namespace = Bunch(self.config_dictionary)
 
-        # Update the command line arguments in the configuration namespace.
-        self.update_namespace()
-
         # Process the configuration parameters.
         self.process_config()
 

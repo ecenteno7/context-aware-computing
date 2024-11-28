@@ -11,14 +11,16 @@ from nn_base.nn_base_data_loader import DataLoader
 import torchaudio
 import torch
 import torchaudio.transforms as T
+import numpy as np
+
 class FoldedAudioDataLoader(DataLoader):
     def __init__(self, config):
         super().__init__(config)
 
 
     def load_dataset(self, folds=10):
-        file_paths = []
-        labels = []
+        file_paths = np.array([])
+        labels = np.array([])
         
         # Assuming folder structure follows the UrbanSound8K format
         for fold_num in range(1, folds + 1):  # 10 predefined folds (fold1 to fold10)
@@ -30,14 +32,13 @@ class FoldedAudioDataLoader(DataLoader):
                         label = int(filename.split('-')[1])  # class IDs are 0-based
                         if label < 0 or label >= 10:
                             print(f"Warning: Invalid label {label} for file {filename}")
-                        file_paths.append(os.path.join(fold_dir, filename))
-                        labels.append(label)
+                        file_paths = np.append(file_paths, os.path.join(fold_dir, filename))
+                        labels = np.append(labels, label)
                     except ValueError:
                         print(f"Error: Failed to extract label from filename {filename}")
 
         self.data = file_paths
         self.labels = labels
-
         return
 
     def display_data_element(self, which_data, index):
