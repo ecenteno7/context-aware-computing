@@ -1,7 +1,6 @@
 import numpy as np
 import os
-import tensorflow as tf
-from tensorflow import keras
+import torch
 
 # Main Application directory
 PACKAGE_PARENT = '..'
@@ -77,8 +76,10 @@ class BaseModel():
 
         if self.model is None:
             raise Exception("Model not configured and trained !")
-
-        self.model.save(self.saved_model_path)
+        try:
+            self.model.save(self.saved_model_path)
+        except AttributeError:
+            torch.save(self.model.state_dict(), self.saved_model_path)
         print("Model saved at path: ", self.saved_model_path, "\n")
 
         return

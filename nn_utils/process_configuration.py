@@ -9,110 +9,112 @@ import os
 from bunch import Bunch
 # Main Application directory
 PACKAGE_PARENT = '..'
-SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
+SCRIPT_DIR = os.path.dirname(os.path.realpath(
+    os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 main_app_path = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT))
+
 
 class ConfigurationParameters:
 
-	def __init__(self, args):
-		"""
-		Intialize the data members.
+    def __init__(self, args):
+        """
+        Intialize the data members.
 
-		:param json_file: Path to the JSON configuration file.
-		:return none
-		:raises none
-		"""
+        :param json_file: Path to the JSON configuration file.
+        :return none
+        :raises none
+        """
+        self.args = args
+        json_file = self.args.get('config')
+        # Parse the configurations from the config json file provided.
+        with open(json_file, 'r') as config_file:
+            self.config_dictionary = json.load(config_file)
 
-		self.args = args
+        # Convert the dictionary to a namespace using bunch library.
+        self.config_namespace = Bunch(self.config_dictionary)
 
-		json_file = self.args['config']
-        
-		# Parse the configurations from the config json file provided.
-		with open(json_file, 'r') as config_file:
-			self.config_dictionary = json.load(config_file)
+        # Process the configuration parameters.
+        self.process_config()
 
-		# Convert the dictionary to a namespace using bunch library.
-		self.config_namespace = Bunch(self.config_dictionary)
+        return
 
-		# Update the command line arguments in the configuration namespace.
-		self.update_namespace()
+    def update_namespace(self):
+        """
+        Updates the value of JSON keys received from the command line to the namespace file.
 
-		# Process the configuration parameters.
-		self.process_config()
+        :param none
+        :return none
+        :raises none
+        """
 
-		return
+        # Update epoch size.
+        if 'epoch' in self.args.keys():
+            self.config_namespace.num_epochs = int(self.args['epoch'])
 
-	def update_namespace(self):
-		"""
-		Updates the value of JSON keys received from the command line to the namespace file.
+        # Update mode (save/load).
+        if 'mode' in self.args.keys():
+            self.config_namespace.mode = self.args['mode']
 
-		:param none
-		:return none
-		:raises none
-		"""
+        # Update mode (save/load).
+        if 'testevaluation' in self.args.keys():
+            self.config_namespace.evaluate_test = self.args['testevaluation']
 
-		# Update epoch size.
-		if 'epoch' in self.args.keys():
-			self.config_namespace.num_epochs = int(self.args['epoch'])
+        return
 
-		# Update mode (save/load).
-		if 'mode' in self.args.keys():
-			self.config_namespace.mode = self.args['mode']
+    def process_config(self):
+        """
+        Processes the configuration parameters of the ConvNet experiment.
 
-		# Update mode (save/load).
-		if 'testevaluation' in self.args.keys():
-			self.config_namespace.evaluate_test = self.args['testevaluation']
+        :param none
+        :return none
+        :raises none
+        """
+        self.config_namespace.dataset_dir = os.path.join(main_app_path, "datasets", self.config_dictionary.get('dataset_dir'))
 
-		return
+        # Saved-Model directory.
+        self.config_namespace.saved_model_dir = os.path.join(
+            main_app_path, "nn_experiments", self.config_namespace.exp_name, "saved_models/")
 
-	def process_config(self):
-		"""
-		Processes the configuration parameters of the ConvNet experiment.
+        # Graph directory.
+        self.config_namespace.graph_dir = os.path.join(
+            main_app_path, "nn_experiments", self.config_namespace.exp_name, "graphs/")
 
-		:param none
-		:return none
-		:raises none
-		"""
+        # Image directory.
+        self.config_namespace.image_dir = os.path.join(
+            main_app_path, "nn_experiments", self.config_namespace.exp_name, "images/")
 
-		# Saved-Model directory.
-		self.config_namespace.saved_model_dir = os.path.join(main_app_path, "nn_experiments", self.config_namespace.exp_name, "saved_models/")
+        # DataFrame directory.
+        self.config_namespace.df_dir = os.path.join(
+            main_app_path, "nn_experiments", self.config_namespace.exp_name, "dataframes/")
 
-		# Graph directory.
-		self.config_namespace.graph_dir = os.path.join(main_app_path, "nn_experiments", self.config_namespace.exp_name, "graphs/")
+        # Classification Report directory.
+        self.config_namespace.cr_dir = os.path.join(
+            main_app_path, "nn_experiments", self.config_namespace.exp_name, "class_reports/")
 
-		# Image directory.
-		self.config_namespace.image_dir = os.path.join(main_app_path, "nn_experiments", self.config_namespace.exp_name, "images/")
+        # Create the above directories.
+        self.create_dirs([self.config_namespace.graph_dir,
+                          self.config_namespace.image_dir,
+                          self.config_namespace.saved_model_dir,
+                          self.config_namespace.df_dir,
+                          self.config_namespace.cr_dir])
 
-		# DataFrame directory.
-		self.config_namespace.df_dir = os.path.join(main_app_path, "nn_experiments", self.config_namespace.exp_name, "dataframes/")
+        return
 
-		# Classification Report directory.
-		self.config_namespace.cr_dir = os.path.join(main_app_path, "nn_experiments", self.config_namespace.exp_name, "class_reports/")
+    def create_dirs(self, dirs):
+        """
+        Creates a directory structure for Graphs and Images generated during the run of the experiment.
 
-		# Create the above directories.
-		self.create_dirs([self.config_namespace.graph_dir,
-						self.config_namespace.image_dir,
-						self.config_namespace.saved_model_dir,
-						self.config_namespace.df_dir,
-						self.config_namespace.cr_dir])
+        :param dirs: a list of directories to create if these directories are not found
+        :return exit_code: 0:success -1:failed
+        :raises none
+        """
 
-		return
+        try:
+            for d in dirs:
+                if not os.path.exists(d):
+                    os.makedirs(d)
+            return 0
 
-	def create_dirs(self, dirs):
-		"""
-		Creates a directory structure for Graphs and Images generated during the run of the experiment.
-
-		:param dirs: a list of directories to create if these directories are not found
-		:return exit_code: 0:success -1:failed
-		:raises none
-		"""
-
-		try:
-			for d in dirs:
-				if not os.path.exists(d):
-					os.makedirs(d)
-			return 0
-
-		except Exception as err:
-			print("Creating directories error: {0}".format(err))
-			exit(-1)
+        except Exception as err:
+            print("Creating directories error: {0}".format(err))
+            exit(-1)

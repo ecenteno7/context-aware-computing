@@ -1,5 +1,5 @@
 *.keras
-*.pth
 datasets/*
 .DS_Store
 *cache*
+*_experiments/*
