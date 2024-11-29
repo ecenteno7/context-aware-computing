@@ -1,29 +1,23 @@
-# Human Activity Recognition using Convolutional Neural Networks with Tensorflow 2 and Keras
+# Context-Aware Computing: Human Activity Recognition and Ambient Soundscape Classification using Python 
 
-More information about the project setup will be available soon..
+This project is a fork from the excellent codebase developed by tzamalisp. This project would not have been possible without their efforts. The original repository focused on developing a 2D CNN with Tensorflow and Keras (Sequential Model) for Human Activity Recognition (HAR). 
+
+This is an attempt to setup a few experiments surrounding context-aware computing using smartphones. Specifically, the included experiments start out with the premise of the original codebase using a popular dataset, *Human Activity Recognition Dataset*, and extending the idea of using a CNN architecture to identify ambient soundscapes with audio recordings. The ambient soundscape classification uses the popular dataset *UrbanSound8K*. More information about the datasets can be found in the Resources section of this ReadMe.  
+
+The ambient sound classifier can be trained using the available dataset and is based off of identifying features from a Mel Spectrogram. ChatGPT was used as a resource to identify a good starting architecture for this neural network, but I have extended that original code suggested from the LLM quite a bit to what you see here in this repo.  
 
 ## Resources
-
+### Human Activity Recognition
 The project uses the famous *Human Activity Recognition Dataset*. Please, read the information link provided below to have a good indication of the dataset format.
 
-* information: [Human Activity Recognition Using Smartphones DataSet](http://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones)
-* download: [UCI HAR Dataset](http://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip)
+* [Information on the Human Activity Recognition Using Smartphones DataSet](http://archive.ics.uci.edu/ml/datasets/human+activity+recognition+using+smartphones)
+* [Download the UCI HAR Dataset Here](http://archive.ics.uci.edu/ml/machine-learning-databases/00240/UCI%20HAR%20Dataset.zip)
 
-## Setup
+The dataset is used to train using a classical 90/10 train/test split. Acceptable accuracy was achieved as shown from the original forked repository, and the confusion matrix from the original author seems to match what I have produced locally as well. 
 
-Download the file you can find in the [Resources](#Resources) section, unzip the file and put the folder inside the datasets folder. If you want to change its default name, please update the `data_folder` value inside the `nn_setup.yml` file where the NN reads the data for processing.
+### Ambient Soundscape Classification
+For UrbanSound8K dataset info, please visit their website:
 
-## Related Work
+* [UrbanSound8K](https://urbansounddataset.weebly.com/urbansound8k.html#10foldCV)
 
-The Object-Oriented Programming design is deployed for the implementation of this project. It is also based on the following related works, but it extends them in the Neural Network Design and the functionalities that previous authors implemented:
-
-* https://machinelearningmastery.com/cnn-models-for-human-activity-recognition-time-series-classification/
-* https://github.com/SantoshPattar/ConvNet-OOP
-* https://github.com/MrGemy95/Tensorflow-Project-Template
-
-## Future Work
-
-* More comments will be added to the code.
-* The logs creation functionality will be added soon.
-
-More information will be available soon..
+The dataset is used for a 10-fold cross-validation on the predefined folds in the dataset, as described in their original paper. I was able to achieve over 90% accuracy in this cross validation, and the model seems to work quite well on audio clips recorded on a smartphone. 
