@@ -9,3 +9,6 @@ scipy==1.4.1
 scikit-learn==0.22.1
 bunch==1.0.1
 pydot==1.4.1
+torch
+soundata
+torchaudio
