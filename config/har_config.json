@@ -19,7 +19,7 @@
 	"oned_no_of_units_l1": 100,
 	"oned_dense_activation_l1": "relu",
 	"oned_dense_activation_l2": "softmax",
-	"num_classes": 6,
+	"no_of_classes": 6,
 	"model_type": "Sequential",
 	"no_of_layers": 7,
 	"padding_size": 0,

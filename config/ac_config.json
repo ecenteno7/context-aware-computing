@@ -1,6 +1,6 @@
 {
-	"exp_name": "ac",
-	"mode": "load",
+	"exp_name": "audio_classification",
+	"mode": "save",
 	"evaluate_test": "true",
 	"save_plots": "true",
 	"save_model": "true",

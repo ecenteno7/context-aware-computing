@@ -17,16 +17,11 @@ import sys
 PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
-from nn_base.nn_base_data_loader import DataLoader
-from nn_utils.process_argument_har import get_args
-from helper_functions.read_yaml import ReadYml
 
 # Main Application directory
 main_app_path = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT))
 
-# read yml configuration for nn setup
-nn_setup_yml = ReadYml('nn_setup.yml')
-nn_setup_conf = nn_setup_yml.load_yml()
+from nn_base.base_data_loader import DataLoader
 
 # load a single file as a numpy array
 def load_file(filepath):
@@ -114,9 +109,9 @@ class SensorDataLoader(DataLoader):
         :raises none
         """
         # load all train
-        self.train_data, self.train_labels = load_dataset_group('train', prefix + nn_setup_conf['data_folder'] + '/')
+        self.train_data, self.train_labels = load_dataset_group('train', prefix + self.config.config_namespace.exp_name + '/')
         # load all test
-        self.test_data, self.test_labels = load_dataset_group('test', prefix + nn_setup_conf['data_folder'] + '/')
+        self.test_data, self.test_labels = load_dataset_group('test', prefix + self.config.config_namespace.exp_name + '/')
 
         # data standardization
         print('Standardizing the data..')
@@ -226,5 +221,3 @@ class SensorDataLoader(DataLoader):
         print("Training and testing datasets respective class labels are converted to one-hot encoded vector. \n")
         return
 
-# if __name__ == '__main__':
-#     data = SensorDataLoader(get_args())

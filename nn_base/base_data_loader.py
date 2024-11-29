@@ -3,14 +3,14 @@ import numpy as np
 
 class DataLoader:
 
-    def __init__(self, config):
+    def __init__(self, config, debug=False):
         """
         Constructor to initialize the training, testing datasets and their properties.
         :param config: the JSON configuration namespace.
         :return none
         :raises none
         """
-
+        self.debug = debug
         # Configuration parameters.
         self.config = config
 
@@ -41,7 +41,8 @@ class DataLoader:
         self.calculate_class_label_size()
 
         # Print the details of the dataset.
-        self.print_dataset_details()
+        if self.debug:
+            self.print_dataset_details()
 
         # Preprocess the dataset (normalize, one-hot-shot encoding).
         self.preprocess_dataset()
@@ -67,7 +68,8 @@ class DataLoader:
         """
         self.list_of_classes = np.unique(self.labels)
         self.no_of_classes = len(self.list_of_classes)
-        print("Number of classes and its list from the loaded dataset calculated.")
+        if self.debug:
+            print("Number of classes and its list from the loaded dataset calculated.")
         return
 
     def print_dataset_details(self):
