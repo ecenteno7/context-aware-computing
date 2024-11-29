@@ -1,10 +1,9 @@
 # Context-Aware Computing: Human Activity Recognition and Ambient Soundscape Classification using Python 
-
-This project is a fork from the excellent codebase developed by tzamalisp. This project would not have been possible without their efforts. The original repository focused on developing a 2D CNN with Tensorflow and Keras (Sequential Model) for Human Activity Recognition (HAR). 
-
 This is an attempt to setup a few experiments surrounding context-aware computing using smartphones. Specifically, the included experiments start out with the premise of the original codebase using a popular dataset, *Human Activity Recognition Dataset*, and extending the idea of using a CNN architecture to identify ambient soundscapes with audio recordings. The ambient soundscape classification uses the popular dataset *UrbanSound8K*. More information about the datasets can be found in the Resources section of this ReadMe.  
 
 The ambient sound classifier can be trained using the available dataset and is based off of identifying features from a Mel Spectrogram. ChatGPT was used as a resource to identify a good starting architecture for this neural network, but I have extended that original code suggested from the LLM quite a bit to what you see here in this repo.  
+
+This project is a fork from the excellent codebase developed by GitHub User *tzamalisp*: [Original Project](https://github.com/tzamalisp/Human-Activity-Recognition-with-Tensorflow2-and-Keras). This project would not have been possible without their efforts. The original repository focused on developing a 2D CNN with Tensorflow and Keras (Sequential Model) for Human Activity Recognition (HAR). 
 
 ## Resources
 ### Human Activity Recognition
