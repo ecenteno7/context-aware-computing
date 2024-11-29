@@ -3,7 +3,7 @@ This is an attempt to setup a few experiments surrounding context-aware computin
 
 The ambient sound classifier can be trained using the available dataset and is based off of identifying features from a Mel Spectrogram. ChatGPT was used as a resource to identify a good starting architecture for this neural network, but I have extended that original code suggested from the LLM quite a bit to what you see here in this repo.  
 
-This project is a fork from the excellent codebase developed by GitHub User *tzamalisp*: [Original Project](https://github.com/tzamalisp/Human-Activity-Recognition-with-Tensorflow2-and-Keras). This project would not have been possible without their efforts. The original repository focused on developing a 2D CNN with Tensorflow and Keras (Sequential Model) for Human Activity Recognition (HAR). 
+This project is a fork from the excellent codebase developed by GitHub User [@tzamalisp](https://github.com/tzamalisp): [Original Project](https://github.com/tzamalisp/Human-Activity-Recognition-with-Tensorflow2-and-Keras). This project would not have been possible without their efforts. The original repository focused on developing a 1D CNN with Tensorflow and Keras (Sequential Model) for Human Activity Recognition (HAR). 
 
 ## Resources
 ### Human Activity Recognition
