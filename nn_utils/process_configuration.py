@@ -13,10 +13,12 @@ SCRIPT_DIR = os.path.dirname(os.path.realpath(
     os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 main_app_path = os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT))
 
+from helper_functions.read_yaml import ReadYml
+from helper_functions.find_create_directory import NnConfDirectory
 
 class ConfigurationParameters:
 
-    def __init__(self, args):
+    def __init__(self):
         """
         Intialize the data members.
 
@@ -24,10 +26,13 @@ class ConfigurationParameters:
         :return none
         :raises none
         """
-        self.args = args
-        json_file = self.args.get('config')
-        # Parse the configurations from the config json file provided.
-        with open(json_file, 'r') as config_file:
+        # read yml configuration for nn setup
+        setup_yml = ReadYml('setup.yml')
+        config_file_name = setup_yml.load_yml().get('config_file')
+        conf_dir = NnConfDirectory()
+        config_file_path = os.path.join(f"{conf_dir}", config_file_name)
+
+        with open(config_file_path, 'r') as config_file:
             self.config_dictionary = json.load(config_file)
 
         # Convert the dictionary to a namespace using bunch library.
@@ -35,29 +40,6 @@ class ConfigurationParameters:
 
         # Process the configuration parameters.
         self.process_config()
-
-        return
-
-    def update_namespace(self):
-        """
-        Updates the value of JSON keys received from the command line to the namespace file.
-
-        :param none
-        :return none
-        :raises none
-        """
-
-        # Update epoch size.
-        if 'epoch' in self.args.keys():
-            self.config_namespace.num_epochs = int(self.args['epoch'])
-
-        # Update mode (save/load).
-        if 'mode' in self.args.keys():
-            self.config_namespace.mode = self.args['mode']
-
-        # Update mode (save/load).
-        if 'testevaluation' in self.args.keys():
-            self.config_namespace.evaluate_test = self.args['testevaluation']
 
         return
 
@@ -69,27 +51,27 @@ class ConfigurationParameters:
         :return none
         :raises none
         """
-        self.config_namespace.dataset_dir = os.path.join(main_app_path, "datasets", self.config_dictionary.get('dataset_dir'))
+        self.config_namespace.dataset_dir = os.path.join(main_app_path, "datasets", self.config_namespace.exp_name)
 
         # Saved-Model directory.
         self.config_namespace.saved_model_dir = os.path.join(
-            main_app_path, "nn_experiments", self.config_namespace.exp_name, "saved_models/")
+            main_app_path, "experiments", self.config_namespace.exp_name, "saved_models/")
 
         # Graph directory.
         self.config_namespace.graph_dir = os.path.join(
-            main_app_path, "nn_experiments", self.config_namespace.exp_name, "graphs/")
+            main_app_path, "experiments", self.config_namespace.exp_name, "graphs/")
 
         # Image directory.
         self.config_namespace.image_dir = os.path.join(
-            main_app_path, "nn_experiments", self.config_namespace.exp_name, "images/")
+            main_app_path, "experiments", self.config_namespace.exp_name, "images/")
 
         # DataFrame directory.
         self.config_namespace.df_dir = os.path.join(
-            main_app_path, "nn_experiments", self.config_namespace.exp_name, "dataframes/")
+            main_app_path, "experiments", self.config_namespace.exp_name, "dataframes/")
 
         # Classification Report directory.
         self.config_namespace.cr_dir = os.path.join(
-            main_app_path, "nn_experiments", self.config_namespace.exp_name, "class_reports/")
+            main_app_path, "experiments", self.config_namespace.exp_name, "class_reports/")
 
         # Create the above directories.
         self.create_dirs([self.config_namespace.graph_dir,

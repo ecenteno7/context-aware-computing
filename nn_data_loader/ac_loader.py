@@ -1,3 +1,7 @@
+import torchaudio
+import torch
+import torchaudio.transforms as T
+import numpy as np
 
 # import scripts from other folders
 import os
@@ -7,11 +11,7 @@ PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-from nn_base.nn_base_data_loader import DataLoader 
-import torchaudio
-import torch
-import torchaudio.transforms as T
-import numpy as np
+from nn_base.base_data_loader import DataLoader 
 
 class FoldedAudioDataLoader(DataLoader):
     def __init__(self, config):
@@ -24,7 +24,7 @@ class FoldedAudioDataLoader(DataLoader):
         
         # Assuming folder structure follows the UrbanSound8K format
         for fold_num in range(1, folds + 1):  # 10 predefined folds (fold1 to fold10)
-            fold_dir = os.path.join(self.config.config_namespace['dataset_dir'], f'fold{fold_num}')
+            fold_dir = os.path.join(self.config.config_namespace.dataset_dir, f'fold{fold_num}')
             for filename in os.listdir(fold_dir):
                 if filename.endswith(".wav"):
                     # Extract class label from the filename (e.g., '1' from 'filename-1.wav')

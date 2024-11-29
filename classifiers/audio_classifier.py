@@ -9,6 +9,7 @@ import numpy as np
 from sklearn.metrics import accuracy_score
 import soundata
 import torchaudio
+
 # import scripts from other folders
 import os
 import sys
@@ -17,7 +18,7 @@ PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
 
-from nn_base.base_models import BaseModel
+from nn_base.base_neural_nets import BaseNeuralNet
 
 
 class MelSpectrogramCNN(nn.Module):
@@ -61,13 +62,14 @@ class MelSpectrogramCNN(nn.Module):
         return x
 
 
-class AudioClassifier(BaseModel):
+
+
+class AudioClassifier(BaseNeuralNet):
     def __init__(self, config, dataset, load=False):
         super().__init__(config, dataset)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.define_model()
         if load:
-            print("Loading")
             self.model.load_state_dict(torch.load(self.saved_model_path, weights_only=True))
             return     
         self.compile_model()
@@ -87,8 +89,8 @@ class AudioClassifier(BaseModel):
     def fit_model(self):
         self.model.train()
 
-        for epoch in range(self.config.config_dictionary.get('num_epochs')):
-            print(f"Epoch {epoch+1}/{self.config.config_dictionary.get('num_epochs')}")
+        for epoch in range(self.config.config_namespace.num_epochs):
+            print(f"Epoch {epoch+1}/{self.config.config_namespace.num_epochs}")
             
             running_loss = 0.0
             for batch_idx, (inputs, targets) in enumerate(self.dataset.train_data):
@@ -173,7 +175,7 @@ class AudioClassifier(BaseModel):
             print(f"Test Accuracy for fold {fold}: {accuracy * 100:.2f}%")
 
             # Save the model for this fold
-            model_save_path = f"model_fold{fold_num}.pth"
+            model_save_path = os.path.join(self.config.config_namespace.saved_model_dir, f"model_fold{fold_num}.pth")
             torch.save(self.model.state_dict(), model_save_path)
             print(f"Model saved to {model_save_path}")
 
@@ -188,5 +190,6 @@ class AudioClassifier(BaseModel):
         outputs = self.model(input.to(self.device))
         _, predicted = torch.max(outputs, 1)
 
-        print(self.config.config_namespace.class_names[predicted[0]])
-        return
+        predicted_label = self.config.config_namespace.class_names[predicted[0]]
+        
+        return predicted_label

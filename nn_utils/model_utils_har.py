@@ -149,7 +149,7 @@ class Report():
 		print('Accuracy: '+ str(accuracy_score(self.model.dataset.test_labels, predicted_classes)))
 		print('Classification Report')
 		print('------------------------------------------------------------------')
-		target_names = ['Class {}'.format(i) for i in range(self.config.config_namespace.num_classes)]
+		target_names = ['Class {}'.format(i) for i in range(self.config.config_namespace.no_of_classes)]
 		print(
 				classification_report(
 					self.model.dataset.test_labels,
@@ -205,7 +205,7 @@ class Report():
 			validation_method = "Validation: Test data"
 
 		predicted_classes = np.argmax(self.model.predictions, axis = 1)
-		target_names = ['Class {}'.format(i) for i in range(self.config.config_namespace.num_classes)]
+		target_names = ['Class {}'.format(i) for i in range(self.config.config_namespace.no_of_classes)]
 
 		title = 'Confusion matrix - {}'.format(validation_method)
 		cm = confusion_matrix(self.model.dataset.test_labels, predicted_classes)
