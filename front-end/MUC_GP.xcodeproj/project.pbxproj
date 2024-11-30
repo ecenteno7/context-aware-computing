@@ -1,0 +1,698 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B0412E3BB877C8AA2F18750E /* Pods_MUC_GP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFC57F8A413B31A4567450BB /* Pods_MUC_GP.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		65AF7DDD2CE91AF1009AC50E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AF7DC42CE91AEE009AC50E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AF7DCB2CE91AEF009AC50E;
+			remoteInfo = MUC_GP;
+		};
+		65AF7DE72CE91AF1009AC50E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65AF7DC42CE91AEE009AC50E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65AF7DCB2CE91AEF009AC50E;
+			remoteInfo = MUC_GP;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1C7A53BD2EACFE931DB36238 /* Pods-MUC_GP.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUC_GP.debug.xcconfig"; path = "Target Support Files/Pods-MUC_GP/Pods-MUC_GP.debug.xcconfig"; sourceTree = "<group>"; };
+		65AF7DCC2CE91AEF009AC50E /* MUC_GP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MUC_GP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AF7DDC2CE91AF1009AC50E /* MUC_GPTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MUC_GPTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		65AF7DE62CE91AF1009AC50E /* MUC_GPUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MUC_GPUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFD67B9BF807584FB81C239D /* Pods-MUC_GP.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUC_GP.release.xcconfig"; path = "Target Support Files/Pods-MUC_GP/Pods-MUC_GP.release.xcconfig"; sourceTree = "<group>"; };
+		EFC57F8A413B31A4567450BB /* Pods_MUC_GP.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MUC_GP.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		65AF7DCE2CE91AEF009AC50E /* MUC_GP */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MUC_GP;
+			sourceTree = "<group>";
+		};
+		65AF7DDF2CE91AF1009AC50E /* MUC_GPTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MUC_GPTests;
+			sourceTree = "<group>";
+		};
+		65AF7DE92CE91AF1009AC50E /* MUC_GPUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = MUC_GPUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		65AF7DC92CE91AEF009AC50E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B0412E3BB877C8AA2F18750E /* Pods_MUC_GP.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DD92CE91AF1009AC50E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DE32CE91AF1009AC50E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65AF7DC32CE91AEE009AC50E = {
+			isa = PBXGroup;
+			children = (
+				65AF7DCE2CE91AEF009AC50E /* MUC_GP */,
+				65AF7DDF2CE91AF1009AC50E /* MUC_GPTests */,
+				65AF7DE92CE91AF1009AC50E /* MUC_GPUITests */,
+				65AF7DCD2CE91AEF009AC50E /* Products */,
+				847A98208F282762AC189BAF /* Pods */,
+				F7163FB37725BF5285F84C39 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		65AF7DCD2CE91AEF009AC50E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				65AF7DCC2CE91AEF009AC50E /* MUC_GP.app */,
+				65AF7DDC2CE91AF1009AC50E /* MUC_GPTests.xctest */,
+				65AF7DE62CE91AF1009AC50E /* MUC_GPUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		847A98208F282762AC189BAF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C7A53BD2EACFE931DB36238 /* Pods-MUC_GP.debug.xcconfig */,
+				AFD67B9BF807584FB81C239D /* Pods-MUC_GP.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F7163FB37725BF5285F84C39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFC57F8A413B31A4567450BB /* Pods_MUC_GP.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		65AF7DCB2CE91AEF009AC50E /* MUC_GP */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65AF7DF02CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GP" */;
+			buildPhases = (
+				B9AA01C95B19DF828009013B /* [CP] Check Pods Manifest.lock */,
+				65AF7DC82CE91AEF009AC50E /* Sources */,
+				65AF7DC92CE91AEF009AC50E /* Frameworks */,
+				65AF7DCA2CE91AEF009AC50E /* Resources */,
+				06E9FB4E347276A55E293209 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				65AF7DCE2CE91AEF009AC50E /* MUC_GP */,
+			);
+			name = MUC_GP;
+			productName = MUC_GP;
+			productReference = 65AF7DCC2CE91AEF009AC50E /* MUC_GP.app */;
+			productType = "com.apple.product-type.application";
+		};
+		65AF7DDB2CE91AF1009AC50E /* MUC_GPTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65AF7DF32CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GPTests" */;
+			buildPhases = (
+				65AF7DD82CE91AF1009AC50E /* Sources */,
+				65AF7DD92CE91AF1009AC50E /* Frameworks */,
+				65AF7DDA2CE91AF1009AC50E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65AF7DDE2CE91AF1009AC50E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				65AF7DDF2CE91AF1009AC50E /* MUC_GPTests */,
+			);
+			name = MUC_GPTests;
+			productName = MUC_GPTests;
+			productReference = 65AF7DDC2CE91AF1009AC50E /* MUC_GPTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		65AF7DE52CE91AF1009AC50E /* MUC_GPUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65AF7DF62CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GPUITests" */;
+			buildPhases = (
+				65AF7DE22CE91AF1009AC50E /* Sources */,
+				65AF7DE32CE91AF1009AC50E /* Frameworks */,
+				65AF7DE42CE91AF1009AC50E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65AF7DE82CE91AF1009AC50E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				65AF7DE92CE91AF1009AC50E /* MUC_GPUITests */,
+			);
+			name = MUC_GPUITests;
+			productName = MUC_GPUITests;
+			productReference = 65AF7DE62CE91AF1009AC50E /* MUC_GPUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		65AF7DC42CE91AEE009AC50E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					65AF7DCB2CE91AEF009AC50E = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					65AF7DDB2CE91AF1009AC50E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 65AF7DCB2CE91AEF009AC50E;
+					};
+					65AF7DE52CE91AF1009AC50E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 65AF7DCB2CE91AEF009AC50E;
+					};
+				};
+			};
+			buildConfigurationList = 65AF7DC72CE91AEE009AC50E /* Build configuration list for PBXProject "MUC_GP" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 65AF7DC32CE91AEE009AC50E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 65AF7DCD2CE91AEF009AC50E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				65AF7DCB2CE91AEF009AC50E /* MUC_GP */,
+				65AF7DDB2CE91AF1009AC50E /* MUC_GPTests */,
+				65AF7DE52CE91AF1009AC50E /* MUC_GPUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		65AF7DCA2CE91AEF009AC50E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DDA2CE91AF1009AC50E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DE42CE91AF1009AC50E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		06E9FB4E347276A55E293209 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MUC_GP/Pods-MUC_GP-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MUC_GP/Pods-MUC_GP-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MUC_GP/Pods-MUC_GP-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9AA01C95B19DF828009013B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MUC_GP-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		65AF7DC82CE91AEF009AC50E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DD82CE91AF1009AC50E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65AF7DE22CE91AF1009AC50E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		65AF7DDE2CE91AF1009AC50E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AF7DCB2CE91AEF009AC50E /* MUC_GP */;
+			targetProxy = 65AF7DDD2CE91AF1009AC50E /* PBXContainerItemProxy */;
+		};
+		65AF7DE82CE91AF1009AC50E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65AF7DCB2CE91AEF009AC50E /* MUC_GP */;
+			targetProxy = 65AF7DE72CE91AF1009AC50E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		65AF7DEE2CE91AF1009AC50E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		65AF7DEF2CE91AF1009AC50E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		65AF7DF12CE91AF1009AC50E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C7A53BD2EACFE931DB36238 /* Pods-MUC_GP.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MUC_GP/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MUC-GP-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/clang/native",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow_io_gcs_filesystem/core/python/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/google/_upb",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/.dylibs",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/core/lib",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/random/lib",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/h5py/.dylibs",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/quantization/tensorflow/calibrator",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/quantization/tensorflow/python",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/stablehlo",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/tf2tensorrt",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/tf2xla/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/experimental/microfrontend/python/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/analyzer_wrapper",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/interpreter_wrapper",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/metrics",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/optimize",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/autograph/impl/testing",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/client",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/data/experimental/service",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/framework",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/grappler",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/lib/core",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/lib/io",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/platform",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/profiler/internal",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/saved_model",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/tpu",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/util",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		65AF7DF22CE91AF1009AC50E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFD67B9BF807584FB81C239D /* Pods-MUC_GP.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MUC_GP/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "MUC-GP-Info.plist";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSMotionUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/clang/native",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow_io_gcs_filesystem/core/python/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/google/_upb",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/.dylibs",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/core/lib",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/numpy/random/lib",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/h5py/.dylibs",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/quantization/tensorflow/calibrator",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/quantization/tensorflow/python",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/mlir/stablehlo",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/tf2tensorrt",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/compiler/tf2xla/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/experimental/microfrontend/python/ops",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/analyzer_wrapper",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/interpreter_wrapper",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/metrics",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/lite/python/optimize",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/autograph/impl/testing",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/client",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/data/experimental/service",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/framework",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/grappler",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/lib/core",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/lib/io",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/platform",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/profiler/internal",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/saved_model",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/tpu",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python/util",
+					"$(PROJECT_DIR)/MUC_GP/Model_Scripts/env/lib/python3.9/site-packages/tensorflow/python",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GP";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		65AF7DF42CE91AF1009AC50E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MUC_GP.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MUC_GP";
+			};
+			name = Debug;
+		};
+		65AF7DF52CE91AF1009AC50E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GPTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MUC_GP.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MUC_GP";
+			};
+			name = Release;
+		};
+		65AF7DF72CE91AF1009AC50E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GPUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MUC_GP;
+			};
+			name = Debug;
+		};
+		65AF7DF82CE91AF1009AC50E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "MUC.MUC-GPUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MUC_GP;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		65AF7DC72CE91AEE009AC50E /* Build configuration list for PBXProject "MUC_GP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AF7DEE2CE91AF1009AC50E /* Debug */,
+				65AF7DEF2CE91AF1009AC50E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65AF7DF02CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GP" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AF7DF12CE91AF1009AC50E /* Debug */,
+				65AF7DF22CE91AF1009AC50E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65AF7DF32CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GPTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AF7DF42CE91AF1009AC50E /* Debug */,
+				65AF7DF52CE91AF1009AC50E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65AF7DF62CE91AF1009AC50E /* Build configuration list for PBXNativeTarget "MUC_GPUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65AF7DF72CE91AF1009AC50E /* Debug */,
+				65AF7DF82CE91AF1009AC50E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 65AF7DC42CE91AEE009AC50E /* Project object */;
+}
